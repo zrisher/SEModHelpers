@@ -9,6 +9,7 @@
 
 import os, os.path, shutil, subprocess, sys
 
+
 scriptDir = os.path.dirname(os.path.realpath(sys.argv[0]))
 buildIni = scriptDir + "\\build.ini"
 startDir = os.getcwd()
@@ -17,61 +18,68 @@ output = input + "\\Output"
 
 mwmBuilder = os.devnull
 
+"""
+    if mwm_builder_path:
+        if not os.path.exists(mwm_builder_path):
+            lib.paths.investigateBadPath("MwmBuilder", mwm_builder_path)
+        else:
+"""
+
 # find MwmBuilder
 if not os.path.exists(mwmBuilder):
-	if len(sys.argv) >= 2: # from argument
-		mwmBuilder = sys.argv[1]
-	
-	if not os.path.exists(mwmBuilder):
-		if (os.path.exists(buildIni)): # from buildIni
-			exec(open(buildIni).read())
-			
-		if not os.path.exists(mwmBuilder):
-			inScriptDir = scrip + "\\MwmBuilder.exe" # from script dir
-			if (os.path.exists(inScriptDir)):
-				mwmBuilder = inScriptDir
-				
-			if not os.path.exists(mwmBuilder):
-				inStartDir = startDir + "\\MwmBuilder.exe" # from start dir (CWD)
-				if (os.path.exists(inStartDir)):
-					mwmBuilder = inStartDir
+  if len(sys.argv) >= 2: # from argument
+    mwmBuilder = sys.argv[1]
 
-				if not os.path.exists(mwmBuilder):
-					print("ERROR: could not find MwmBuilder.exe")
-					sys.exit()
+  if not os.path.exists(mwmBuilder):
+    if (os.path.exists(buildIni)): # from buildIni
+      exec(open(buildIni).read())
+
+    if not os.path.exists(mwmBuilder):
+      inScriptDir = scriptDir + "\\MwmBuilder.exe" # from script dir
+      if (os.path.exists(inScriptDir)):
+        mwmBuilder = inScriptDir
+
+      if not os.path.exists(mwmBuilder):
+        inStartDir = startDir + "\\MwmBuilder.exe" # from start dir (CWD)
+        if (os.path.exists(inStartDir)):
+          mwmBuilder = inStartDir
+
+        if not os.path.exists(mwmBuilder):
+          print("ERROR: could not find MwmBuilder.exe")
+          sys.exit()
 
 # test current directory contains fbx and xml files
 bNoFBX = True
 bNoXML = True
 for file in os.listdir('.'):
-	if file.lower().endswith(".fbx"):
-		bNoFBX = False
-	else:
-		if file.lower().endswith(".xml"):
-			bNoXML = False
+  if file.lower().endswith(".fbx"):
+    bNoFBX = False
+  else:
+    if file.lower().endswith(".xml"):
+      bNoXML = False
 
 if bNoFBX or bNoXML:
-	print("WARNING: " + os.getcwd() + " does not contain .fbx and .xml files")
-	sys.exit()
+  print("WARNING: " + os.getcwd() + " does not contain .fbx and .xml files")
+  sys.exit()
 
 
 def createDir(l_dir):
-	if not os.path.exists(l_dir):
-		os.makedirs(l_dir)
+  if not os.path.exists(l_dir):
+    os.makedirs(l_dir)
 
 # delete all the files in a directory
 def emptyDir(l_dir):
-	if os.path.exists(l_dir):
-		for file in os.listdir(l_dir):
-			if os.path.isfile(l_dir + "\\" + file):
-				os.remove(l_dir + "\\" + file)
+  if os.path.exists(l_dir):
+    for file in os.listdir(l_dir):
+      if os.path.isfile(l_dir + "\\" + file):
+        os.remove(l_dir + "\\" + file)
 
 def copyWithExtension(l_from, l_to, l_ext):
-	createDir(l_to)
-	os.chdir(l_from)
-	for file in os.listdir('.'):
-		if file.lower().endswith(l_ext.lower()):
-			shutil.copy2(file, l_to)
+  createDir(l_to)
+  os.chdir(l_from)
+  for file in os.listdir('.'):
+    if file.lower().endswith(l_ext.lower()):
+      shutil.copy2(file, l_to)
 
 
 # set up directories for MwmBuilder

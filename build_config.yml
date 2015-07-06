@@ -1,0 +1,58 @@
+#
+# SE Mod Helpers - build script configuration file
+#
+# Include this file in your mod's top-level directory.
+#
+# The build script will search its own directory for "build_config.yml", then
+# each higher level directory up to 4 levels. The first one found is used to
+# configure this script.
+
+# mod_name and mod_dir are automatically inferred from the location of this file,
+# but can be specified instead:
+#mod_name: MyAwesomeMod
+#source_dir: 'C:\Sites\MyAwesomeMod'
+
+# If your code is organized into modules, i.e.
+#
+# ModSourceFolder
+#   - Module1
+#       - Data
+#       - Scripts
+#       - Textures
+#   - Module2
+#       - Data
+#       - Textures
+#   ... etc ...
+#
+# then `has_modules` should be true. Otherwise, if you have a flat structure like
+#
+# ModSourceFolder
+#   - Data
+#   - Scripts
+#   - Textures
+#
+# then `has_modules` should be false.
+# Note that in the latter case none of SEModHelper's files will be included.
+has_modules: true
+
+# the path to SE's client-side mods folder
+# this will be automatically inferred from %APPDATA%% unless provided below
+#se_mods_dir: 'C:\Users\UserName\AppData\Roaming\SpaceEngineers\Mods'
+
+# C# compilation variables to remove in production code
+dev_compilation_variables:
+   - DEBUG
+
+# Should the builder deploy an additional copy of the mod with compilation tags
+# left intact for development?
+build_dev_version: true
+
+distributions:
+  - development
+      suffix: " Dev"
+  - production
+      remove_compile_symbols:
+        - DEBUG
+
+# if mwm_builder_path points to MwmBuilder.exe, models will be built
+mwm_builder_path: 'C:\Program Files (x86)\Steam\SteamApps\common\SpaceEngineers\Tools\MwmBuilder\MwmBuilder.exe'

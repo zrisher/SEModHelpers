@@ -1,0 +1,49 @@
+
+
+------- SEModHelpers Python Build Script  -------
+
+Running from c:\Sites\zrisher\SEModHelpers\.build
+Config file found at c:\Sites\zrisher\SEModHelpers\build_config.yml
+
+----- Config -----
+
+Mod Name: SEModHelpers
+Source directory: c:\Sites\zrisher\SEModHelpers
+Source Modules: 
+ - TurretControl: c:\Sites\zrisher\SEModHelpers\TurretControl
+ - Archive: c:\Sites\zrisher\SEModHelpers\Archive
+ - Utility: c:\Sites\zrisher\SEModHelpers\Utility
+ - Update: c:\Sites\zrisher\SEModHelpers\Update
+
+SE Mods Directory: C:\Users\Zach\AppData\Roaming\SpaceEngineers\Mods
+Distribute Mods to: 
+ - C:\Users\Zach\AppData\Roaming\SpaceEngineers\Mods\SEModHelpers
+Build the Dev version? True
+Mod Dev Dist Dir C:\Users\Zach\AppData\Roaming\SpaceEngineers\Mods\SEModHelpers Dev
+Compilation variables to remove from .cs files: ['DEBUG']
+
+MWM Builder Path: C:\Program Files (x86)\Steam\SteamApps\common\SpaceEngineers\Tools\MwmBuilder\MwmBuilder.exe
+
+----- Running Build ----- 
+
+--- Starting MWM Model Builder Threads --- 
+looking for model dirs to build from
+spawning process for c:\Sites\zrisher\SEModHelpers\TurretControl\Model\large
+spawning process for c:\Sites\zrisher\SEModHelpers\TurretControl\Model\small
+spawning process for c:\Sites\zrisher\SEModHelpers\Update\Model\large
+spawning process for c:\Sites\zrisher\SEModHelpers\Update\Model\small
+no mwm_processes running
+
+--- Cleaning Dist Dirs ---
+cleaning dist dir C:\Users\Zach\AppData\Roaming\SpaceEngineers\Mods\SEModHelpers
+cleaning dist dir C:\Users\Zach\AppData\Roaming\SpaceEngineers\Mods\SEModHelpers Dev
+
+--- Copying Data ---
+Distribute
+Distribute '.sbc' in TurretControl/[['Data']] to ['C:\\Users\\Zach\\AppData\\Roaming\\SpaceEngineers\\Mods\\SEModHelpers', 'C:\\Users\\Zach\\AppData\\Roaming\\SpaceEngineers\\Mods\\SEModHelpers Dev']
+Distribute '.sbc' in Archive/[['Data']] to ['C:\\Users\\Zach\\AppData\\Roaming\\SpaceEngineers\\Mods\\SEModHelpers', 'C:\\Users\\Zach\\AppData\\Roaming\\SpaceEngineers\\Mods\\SEModHelpers Dev']
+Distribute '.sbc' in Utility/[['Data']] to ['C:\\Users\\Zach\\AppData\\Roaming\\SpaceEngineers\\Mods\\SEModHelpers', 'C:\\Users\\Zach\\AppData\\Roaming\\SpaceEngineers\\Mods\\SEModHelpers Dev']
+Distribute '.sbc' in Update/[['Data']] to ['C:\\Users\\Zach\\AppData\\Roaming\\SpaceEngineers\\Mods\\SEModHelpers', 'C:\\Users\\Zach\\AppData\\Roaming\\SpaceEngineers\\Mods\\SEModHelpers Dev']
+
+------- SEModHelpers Python Build Complete  ------- 
+
