@@ -7,20 +7,21 @@ Config file found at c:\Sites\zrisher\SEModHelpers\build_config.yml
 
 ----- Config -----
 
-Mod Name: SEModHelpers
-Source directory: c:\Sites\zrisher\SEModHelpers
 Source Modules: 
- - TurretControl: c:\Sites\zrisher\SEModHelpers\TurretControl
- - Archive: c:\Sites\zrisher\SEModHelpers\Archive
- - Utility: c:\Sites\zrisher\SEModHelpers\Utility
  - Update: c:\Sites\zrisher\SEModHelpers\Update
+ - Utility: c:\Sites\zrisher\SEModHelpers\Utility
+ - Archive: c:\Sites\zrisher\SEModHelpers\Archive
+ - TurretControl: c:\Sites\zrisher\SEModHelpers\TurretControl
 
-SE Mods Directory: C:\Users\Zach\AppData\Roaming\SpaceEngineers\Mods
-Distribute Mods to: 
- - C:\Users\Zach\AppData\Roaming\SpaceEngineers\Mods\SEModHelpers
-Build the Dev version? True
-Mod Dev Dist Dir C:\Users\Zach\AppData\Roaming\SpaceEngineers\Mods\SEModHelpers Dev
-Compilation variables to remove from .cs files: ['DEBUG']
+Distributions
+ - production: 
+     Path: C:\Users\Zach\AppData\Roaming\SpaceEngineers\Mods\SEModHelpers
+     cleanup_ignores: ['^modinfo\\.sbmi']
+     compile_symbols_to_remove: ['DEBUG']
+ - development: 
+     Path: C:\Users\Zach\AppData\Roaming\SpaceEngineers\Mods\SEModHelpers Dev
+     cleanup_ignores: ['^modinfo\\.sbmi']
+     compile_symbols_to_remove: None
 
 MWM Builder Path: C:\Program Files (x86)\Steam\SteamApps\common\SpaceEngineers\Tools\MwmBuilder\MwmBuilder.exe
 
@@ -28,22 +29,279 @@ MWM Builder Path: C:\Program Files (x86)\Steam\SteamApps\common\SpaceEngineers\T
 
 --- Starting MWM Model Builder Threads --- 
 looking for model dirs to build from
-spawning process for c:\Sites\zrisher\SEModHelpers\TurretControl\Model\large
-spawning process for c:\Sites\zrisher\SEModHelpers\TurretControl\Model\small
 spawning process for c:\Sites\zrisher\SEModHelpers\Update\Model\large
 spawning process for c:\Sites\zrisher\SEModHelpers\Update\Model\small
+spawning process for c:\Sites\zrisher\SEModHelpers\TurretControl\Model\large
+spawning process for c:\Sites\zrisher\SEModHelpers\TurretControl\Model\small
 no mwm_processes running
 
 --- Cleaning Dist Dirs ---
 cleaning dist dir C:\Users\Zach\AppData\Roaming\SpaceEngineers\Mods\SEModHelpers
+removing file C:\Users\Zach\AppData\Roaming\SpaceEngineers\Mods\SEModHelpers\Data\Archive.Radar.sbc
+removing file C:\Users\Zach\AppData\Roaming\SpaceEngineers\Mods\SEModHelpers\Data\TurretControl.Autopilot-Block.sbc
+removing file C:\Users\Zach\AppData\Roaming\SpaceEngineers\Mods\SEModHelpers\Scripts\TurretControl.TurretThread.cs
+removing file C:\Users\Zach\AppData\Roaming\SpaceEngineers\Mods\SEModHelpers\Scripts\Update.UpdateManager.cs
+removing file C:\Users\Zach\AppData\Roaming\SpaceEngineers\Mods\SEModHelpers\Scripts\Utility.AttachedGrid.StatorRotor.cs
+removing file C:\Users\Zach\AppData\Roaming\SpaceEngineers\Mods\SEModHelpers\Scripts\Utility.AttachedGrids.cs
+removing file C:\Users\Zach\AppData\Roaming\SpaceEngineers\Mods\SEModHelpers\Scripts\Utility.CubeGridCache.cs
+removing file C:\Users\Zach\AppData\Roaming\SpaceEngineers\Mods\SEModHelpers\Scripts\Utility.DefinitionCache.cs
+removing file C:\Users\Zach\AppData\Roaming\SpaceEngineers\Mods\SEModHelpers\Scripts\Utility.Extensions.CapsuleExtensions.cs
+removing file C:\Users\Zach\AppData\Roaming\SpaceEngineers\Mods\SEModHelpers\Scripts\Utility.Extensions.IMyCubeBlockExtensions.cs
+removing file C:\Users\Zach\AppData\Roaming\SpaceEngineers\Mods\SEModHelpers\Scripts\Utility.Extensions.IMySlimBlockExtensions.cs
+removing file C:\Users\Zach\AppData\Roaming\SpaceEngineers\Mods\SEModHelpers\Scripts\Utility.Extensions.MiscExtensions.cs
+removing file C:\Users\Zach\AppData\Roaming\SpaceEngineers\Mods\SEModHelpers\Scripts\Utility.Extensions.StringExtensions.cs
+removing file C:\Users\Zach\AppData\Roaming\SpaceEngineers\Mods\SEModHelpers\Scripts\Utility.Extensions.VectorExtensions.cs
+removing file C:\Users\Zach\AppData\Roaming\SpaceEngineers\Mods\SEModHelpers\Scripts\Utility.FastResourceLock.cs
+removing file C:\Users\Zach\AppData\Roaming\SpaceEngineers\Mods\SEModHelpers\Scripts\Utility.Lazy.cs
+removing file C:\Users\Zach\AppData\Roaming\SpaceEngineers\Mods\SEModHelpers\Scripts\Utility.ListSnapshots.cs
+removing file C:\Users\Zach\AppData\Roaming\SpaceEngineers\Mods\SEModHelpers\Scripts\Utility.Logger.cs
+removing file C:\Users\Zach\AppData\Roaming\SpaceEngineers\Mods\SEModHelpers\Scripts\Utility.MainLock.cs
+removing file C:\Users\Zach\AppData\Roaming\SpaceEngineers\Mods\SEModHelpers\Scripts\Utility.MotorTurret.cs
+removing file C:\Users\Zach\AppData\Roaming\SpaceEngineers\Mods\SEModHelpers\Scripts\Utility.PrettySI.cs
+removing file C:\Users\Zach\AppData\Roaming\SpaceEngineers\Mods\SEModHelpers\Scripts\Utility.ReadOnlyList.cs
+removing file C:\Users\Zach\AppData\Roaming\SpaceEngineers\Mods\SEModHelpers\Scripts\Utility.RelativeDirection3F.cs
+removing file C:\Users\Zach\AppData\Roaming\SpaceEngineers\Mods\SEModHelpers\Scripts\Utility.RelativePosition3F.cs
+removing file C:\Users\Zach\AppData\Roaming\SpaceEngineers\Mods\SEModHelpers\Scripts\Utility.RelativeVector3F.cs
+removing file C:\Users\Zach\AppData\Roaming\SpaceEngineers\Mods\SEModHelpers\Scripts\Utility.Settings.cs
+removing file C:\Users\Zach\AppData\Roaming\SpaceEngineers\Mods\SEModHelpers\Scripts\Utility.TargetTracker.cs
+removing file C:\Users\Zach\AppData\Roaming\SpaceEngineers\Mods\SEModHelpers\Scripts\Utility.ThreadManager.cs
+removing file C:\Users\Zach\AppData\Roaming\SpaceEngineers\Mods\SEModHelpers\Scripts\Utility.TimeAction.cs
+removing file C:\Users\Zach\AppData\Roaming\SpaceEngineers\Mods\SEModHelpers\Textures\Cubes\Archive.Purple_me.dds
+removing file C:\Users\Zach\AppData\Roaming\SpaceEngineers\Mods\SEModHelpers\Textures\Cubes\Utility.Purple_me.dds
+removing file C:\Users\Zach\AppData\Roaming\SpaceEngineers\Mods\SEModHelpers\Textures\Icon\Archive.radar.dds
+removing file C:\Users\Zach\AppData\Roaming\SpaceEngineers\Mods\SEModHelpers\Textures\Icon\Utility.radar.dds
+removing file C:\Users\Zach\AppData\Roaming\SpaceEngineers\Mods\SEModHelpers\Textures\TextPanel\Archive.radar.dds
+removing file C:\Users\Zach\AppData\Roaming\SpaceEngineers\Mods\SEModHelpers\Textures\TextPanel\Utility.radar.dds
 cleaning dist dir C:\Users\Zach\AppData\Roaming\SpaceEngineers\Mods\SEModHelpers Dev
+removing file C:\Users\Zach\AppData\Roaming\SpaceEngineers\Mods\SEModHelpers Dev\Data\Archive.Radar.sbc
+removing file C:\Users\Zach\AppData\Roaming\SpaceEngineers\Mods\SEModHelpers Dev\Data\TurretControl.Autopilot-Block.sbc
+removing file C:\Users\Zach\AppData\Roaming\SpaceEngineers\Mods\SEModHelpers Dev\Scripts\TurretControl.TurretThread.cs
+removing file C:\Users\Zach\AppData\Roaming\SpaceEngineers\Mods\SEModHelpers Dev\Scripts\Update.UpdateManager.cs
+removing file C:\Users\Zach\AppData\Roaming\SpaceEngineers\Mods\SEModHelpers Dev\Scripts\Utility.AttachedGrid.StatorRotor.cs
+removing file C:\Users\Zach\AppData\Roaming\SpaceEngineers\Mods\SEModHelpers Dev\Scripts\Utility.AttachedGrids.cs
+removing file C:\Users\Zach\AppData\Roaming\SpaceEngineers\Mods\SEModHelpers Dev\Scripts\Utility.CubeGridCache.cs
+removing file C:\Users\Zach\AppData\Roaming\SpaceEngineers\Mods\SEModHelpers Dev\Scripts\Utility.DefinitionCache.cs
+removing file C:\Users\Zach\AppData\Roaming\SpaceEngineers\Mods\SEModHelpers Dev\Scripts\Utility.Extensions.CapsuleExtensions.cs
+removing file C:\Users\Zach\AppData\Roaming\SpaceEngineers\Mods\SEModHelpers Dev\Scripts\Utility.Extensions.IMyCubeBlockExtensions.cs
+removing file C:\Users\Zach\AppData\Roaming\SpaceEngineers\Mods\SEModHelpers Dev\Scripts\Utility.Extensions.IMySlimBlockExtensions.cs
+removing file C:\Users\Zach\AppData\Roaming\SpaceEngineers\Mods\SEModHelpers Dev\Scripts\Utility.Extensions.MiscExtensions.cs
+removing file C:\Users\Zach\AppData\Roaming\SpaceEngineers\Mods\SEModHelpers Dev\Scripts\Utility.Extensions.StringExtensions.cs
+removing file C:\Users\Zach\AppData\Roaming\SpaceEngineers\Mods\SEModHelpers Dev\Scripts\Utility.Extensions.VectorExtensions.cs
+removing file C:\Users\Zach\AppData\Roaming\SpaceEngineers\Mods\SEModHelpers Dev\Scripts\Utility.FastResourceLock.cs
+removing file C:\Users\Zach\AppData\Roaming\SpaceEngineers\Mods\SEModHelpers Dev\Scripts\Utility.Lazy.cs
+removing file C:\Users\Zach\AppData\Roaming\SpaceEngineers\Mods\SEModHelpers Dev\Scripts\Utility.ListSnapshots.cs
+removing file C:\Users\Zach\AppData\Roaming\SpaceEngineers\Mods\SEModHelpers Dev\Scripts\Utility.Logger.cs
+removing file C:\Users\Zach\AppData\Roaming\SpaceEngineers\Mods\SEModHelpers Dev\Scripts\Utility.MainLock.cs
+removing file C:\Users\Zach\AppData\Roaming\SpaceEngineers\Mods\SEModHelpers Dev\Scripts\Utility.MotorTurret.cs
+removing file C:\Users\Zach\AppData\Roaming\SpaceEngineers\Mods\SEModHelpers Dev\Scripts\Utility.PrettySI.cs
+removing file C:\Users\Zach\AppData\Roaming\SpaceEngineers\Mods\SEModHelpers Dev\Scripts\Utility.ReadOnlyList.cs
+removing file C:\Users\Zach\AppData\Roaming\SpaceEngineers\Mods\SEModHelpers Dev\Scripts\Utility.RelativeDirection3F.cs
+removing file C:\Users\Zach\AppData\Roaming\SpaceEngineers\Mods\SEModHelpers Dev\Scripts\Utility.RelativePosition3F.cs
+removing file C:\Users\Zach\AppData\Roaming\SpaceEngineers\Mods\SEModHelpers Dev\Scripts\Utility.RelativeVector3F.cs
+removing file C:\Users\Zach\AppData\Roaming\SpaceEngineers\Mods\SEModHelpers Dev\Scripts\Utility.Settings.cs
+removing file C:\Users\Zach\AppData\Roaming\SpaceEngineers\Mods\SEModHelpers Dev\Scripts\Utility.TargetTracker.cs
+removing file C:\Users\Zach\AppData\Roaming\SpaceEngineers\Mods\SEModHelpers Dev\Scripts\Utility.ThreadManager.cs
+removing file C:\Users\Zach\AppData\Roaming\SpaceEngineers\Mods\SEModHelpers Dev\Scripts\Utility.TimeAction.cs
+removing file C:\Users\Zach\AppData\Roaming\SpaceEngineers\Mods\SEModHelpers Dev\Textures\Cubes\Archive.Purple_me.dds
+removing file C:\Users\Zach\AppData\Roaming\SpaceEngineers\Mods\SEModHelpers Dev\Textures\Cubes\Utility.Purple_me.dds
+removing file C:\Users\Zach\AppData\Roaming\SpaceEngineers\Mods\SEModHelpers Dev\Textures\Icon\Archive.radar.dds
+removing file C:\Users\Zach\AppData\Roaming\SpaceEngineers\Mods\SEModHelpers Dev\Textures\Icon\Utility.radar.dds
+removing file C:\Users\Zach\AppData\Roaming\SpaceEngineers\Mods\SEModHelpers Dev\Textures\TextPanel\Archive.radar.dds
+removing file C:\Users\Zach\AppData\Roaming\SpaceEngineers\Mods\SEModHelpers Dev\Textures\TextPanel\Utility.radar.dds
 
 --- Copying Data ---
-Distribute
-Distribute '.sbc' in TurretControl/[['Data']] to ['C:\\Users\\Zach\\AppData\\Roaming\\SpaceEngineers\\Mods\\SEModHelpers', 'C:\\Users\\Zach\\AppData\\Roaming\\SpaceEngineers\\Mods\\SEModHelpers Dev']
-Distribute '.sbc' in Archive/[['Data']] to ['C:\\Users\\Zach\\AppData\\Roaming\\SpaceEngineers\\Mods\\SEModHelpers', 'C:\\Users\\Zach\\AppData\\Roaming\\SpaceEngineers\\Mods\\SEModHelpers Dev']
-Distribute '.sbc' in Utility/[['Data']] to ['C:\\Users\\Zach\\AppData\\Roaming\\SpaceEngineers\\Mods\\SEModHelpers', 'C:\\Users\\Zach\\AppData\\Roaming\\SpaceEngineers\\Mods\\SEModHelpers Dev']
-Distribute '.sbc' in Update/[['Data']] to ['C:\\Users\\Zach\\AppData\\Roaming\\SpaceEngineers\\Mods\\SEModHelpers', 'C:\\Users\\Zach\\AppData\\Roaming\\SpaceEngineers\\Mods\\SEModHelpers Dev']
+creating directory path: C:\Users\Zach\AppData\Roaming\SpaceEngineers\Mods\SEModHelpers\Data\.
+Copy from c:\Sites\zrisher\SEModHelpers\Archive\Data\Radar.sbc
+       to C:\Users\Zach\AppData\Roaming\SpaceEngineers\Mods\SEModHelpers\Data\.\Archive.Radar.sbc
+Remove symbols ['DEBUG'] from C:\Users\Zach\AppData\Roaming\SpaceEngineers\Mods\SEModHelpers\Data\.\Archive.Radar.sbc
+creating directory path: C:\Users\Zach\AppData\Roaming\SpaceEngineers\Mods\SEModHelpers Dev\Data\.
+Copy from c:\Sites\zrisher\SEModHelpers\Archive\Data\Radar.sbc
+       to C:\Users\Zach\AppData\Roaming\SpaceEngineers\Mods\SEModHelpers Dev\Data\.\Archive.Radar.sbc
+Copy from c:\Sites\zrisher\SEModHelpers\TurretControl\Data\Autopilot-Block.sbc
+       to C:\Users\Zach\AppData\Roaming\SpaceEngineers\Mods\SEModHelpers\Data\.\TurretControl.Autopilot-Block.sbc
+Remove symbols ['DEBUG'] from C:\Users\Zach\AppData\Roaming\SpaceEngineers\Mods\SEModHelpers\Data\.\TurretControl.Autopilot-Block.sbc
+Copy from c:\Sites\zrisher\SEModHelpers\TurretControl\Data\Autopilot-Block.sbc
+       to C:\Users\Zach\AppData\Roaming\SpaceEngineers\Mods\SEModHelpers Dev\Data\.\TurretControl.Autopilot-Block.sbc
+
+--- Copying Scripts ---
+creating directory path: C:\Users\Zach\AppData\Roaming\SpaceEngineers\Mods\SEModHelpers\Scripts
+Copy from c:\Sites\zrisher\SEModHelpers\Update\Scripts\UpdateManager.cs
+       to C:\Users\Zach\AppData\Roaming\SpaceEngineers\Mods\SEModHelpers\Scripts\Update.UpdateManager.cs
+Remove symbols ['DEBUG'] from C:\Users\Zach\AppData\Roaming\SpaceEngineers\Mods\SEModHelpers\Scripts\Update.UpdateManager.cs
+creating directory path: C:\Users\Zach\AppData\Roaming\SpaceEngineers\Mods\SEModHelpers Dev\Scripts
+Copy from c:\Sites\zrisher\SEModHelpers\Update\Scripts\UpdateManager.cs
+       to C:\Users\Zach\AppData\Roaming\SpaceEngineers\Mods\SEModHelpers Dev\Scripts\Update.UpdateManager.cs
+Copy from c:\Sites\zrisher\SEModHelpers\Utility\Scripts\AttachedGrids.cs
+       to C:\Users\Zach\AppData\Roaming\SpaceEngineers\Mods\SEModHelpers\Scripts\Utility.AttachedGrids.cs
+Remove symbols ['DEBUG'] from C:\Users\Zach\AppData\Roaming\SpaceEngineers\Mods\SEModHelpers\Scripts\Utility.AttachedGrids.cs
+Copy from c:\Sites\zrisher\SEModHelpers\Utility\Scripts\CubeGridCache.cs
+       to C:\Users\Zach\AppData\Roaming\SpaceEngineers\Mods\SEModHelpers\Scripts\Utility.CubeGridCache.cs
+Remove symbols ['DEBUG'] from C:\Users\Zach\AppData\Roaming\SpaceEngineers\Mods\SEModHelpers\Scripts\Utility.CubeGridCache.cs
+Copy from c:\Sites\zrisher\SEModHelpers\Utility\Scripts\DefinitionCache.cs
+       to C:\Users\Zach\AppData\Roaming\SpaceEngineers\Mods\SEModHelpers\Scripts\Utility.DefinitionCache.cs
+Remove symbols ['DEBUG'] from C:\Users\Zach\AppData\Roaming\SpaceEngineers\Mods\SEModHelpers\Scripts\Utility.DefinitionCache.cs
+Copy from c:\Sites\zrisher\SEModHelpers\Utility\Scripts\FastResourceLock.cs
+       to C:\Users\Zach\AppData\Roaming\SpaceEngineers\Mods\SEModHelpers\Scripts\Utility.FastResourceLock.cs
+Remove symbols ['DEBUG'] from C:\Users\Zach\AppData\Roaming\SpaceEngineers\Mods\SEModHelpers\Scripts\Utility.FastResourceLock.cs
+Copy from c:\Sites\zrisher\SEModHelpers\Utility\Scripts\Lazy.cs
+       to C:\Users\Zach\AppData\Roaming\SpaceEngineers\Mods\SEModHelpers\Scripts\Utility.Lazy.cs
+Remove symbols ['DEBUG'] from C:\Users\Zach\AppData\Roaming\SpaceEngineers\Mods\SEModHelpers\Scripts\Utility.Lazy.cs
+Copy from c:\Sites\zrisher\SEModHelpers\Utility\Scripts\ListSnapshots.cs
+       to C:\Users\Zach\AppData\Roaming\SpaceEngineers\Mods\SEModHelpers\Scripts\Utility.ListSnapshots.cs
+Remove symbols ['DEBUG'] from C:\Users\Zach\AppData\Roaming\SpaceEngineers\Mods\SEModHelpers\Scripts\Utility.ListSnapshots.cs
+Copy from c:\Sites\zrisher\SEModHelpers\Utility\Scripts\Logger.cs
+       to C:\Users\Zach\AppData\Roaming\SpaceEngineers\Mods\SEModHelpers\Scripts\Utility.Logger.cs
+Remove symbols ['DEBUG'] from C:\Users\Zach\AppData\Roaming\SpaceEngineers\Mods\SEModHelpers\Scripts\Utility.Logger.cs
+Copy from c:\Sites\zrisher\SEModHelpers\Utility\Scripts\MainLock.cs
+       to C:\Users\Zach\AppData\Roaming\SpaceEngineers\Mods\SEModHelpers\Scripts\Utility.MainLock.cs
+Remove symbols ['DEBUG'] from C:\Users\Zach\AppData\Roaming\SpaceEngineers\Mods\SEModHelpers\Scripts\Utility.MainLock.cs
+Copy from c:\Sites\zrisher\SEModHelpers\Utility\Scripts\MotorTurret.cs
+       to C:\Users\Zach\AppData\Roaming\SpaceEngineers\Mods\SEModHelpers\Scripts\Utility.MotorTurret.cs
+Remove symbols ['DEBUG'] from C:\Users\Zach\AppData\Roaming\SpaceEngineers\Mods\SEModHelpers\Scripts\Utility.MotorTurret.cs
+Copy from c:\Sites\zrisher\SEModHelpers\Utility\Scripts\PrettySI.cs
+       to C:\Users\Zach\AppData\Roaming\SpaceEngineers\Mods\SEModHelpers\Scripts\Utility.PrettySI.cs
+Remove symbols ['DEBUG'] from C:\Users\Zach\AppData\Roaming\SpaceEngineers\Mods\SEModHelpers\Scripts\Utility.PrettySI.cs
+Copy from c:\Sites\zrisher\SEModHelpers\Utility\Scripts\ReadOnlyList.cs
+       to C:\Users\Zach\AppData\Roaming\SpaceEngineers\Mods\SEModHelpers\Scripts\Utility.ReadOnlyList.cs
+Remove symbols ['DEBUG'] from C:\Users\Zach\AppData\Roaming\SpaceEngineers\Mods\SEModHelpers\Scripts\Utility.ReadOnlyList.cs
+Copy from c:\Sites\zrisher\SEModHelpers\Utility\Scripts\RelativeDirection3F.cs
+       to C:\Users\Zach\AppData\Roaming\SpaceEngineers\Mods\SEModHelpers\Scripts\Utility.RelativeDirection3F.cs
+Remove symbols ['DEBUG'] from C:\Users\Zach\AppData\Roaming\SpaceEngineers\Mods\SEModHelpers\Scripts\Utility.RelativeDirection3F.cs
+Copy from c:\Sites\zrisher\SEModHelpers\Utility\Scripts\RelativePosition3F.cs
+       to C:\Users\Zach\AppData\Roaming\SpaceEngineers\Mods\SEModHelpers\Scripts\Utility.RelativePosition3F.cs
+Remove symbols ['DEBUG'] from C:\Users\Zach\AppData\Roaming\SpaceEngineers\Mods\SEModHelpers\Scripts\Utility.RelativePosition3F.cs
+Copy from c:\Sites\zrisher\SEModHelpers\Utility\Scripts\RelativeVector3F.cs
+       to C:\Users\Zach\AppData\Roaming\SpaceEngineers\Mods\SEModHelpers\Scripts\Utility.RelativeVector3F.cs
+Remove symbols ['DEBUG'] from C:\Users\Zach\AppData\Roaming\SpaceEngineers\Mods\SEModHelpers\Scripts\Utility.RelativeVector3F.cs
+Copy from c:\Sites\zrisher\SEModHelpers\Utility\Scripts\Settings.cs
+       to C:\Users\Zach\AppData\Roaming\SpaceEngineers\Mods\SEModHelpers\Scripts\Utility.Settings.cs
+Remove symbols ['DEBUG'] from C:\Users\Zach\AppData\Roaming\SpaceEngineers\Mods\SEModHelpers\Scripts\Utility.Settings.cs
+Copy from c:\Sites\zrisher\SEModHelpers\Utility\Scripts\TargetTracker.cs
+       to C:\Users\Zach\AppData\Roaming\SpaceEngineers\Mods\SEModHelpers\Scripts\Utility.TargetTracker.cs
+Remove symbols ['DEBUG'] from C:\Users\Zach\AppData\Roaming\SpaceEngineers\Mods\SEModHelpers\Scripts\Utility.TargetTracker.cs
+Copy from c:\Sites\zrisher\SEModHelpers\Utility\Scripts\ThreadManager.cs
+       to C:\Users\Zach\AppData\Roaming\SpaceEngineers\Mods\SEModHelpers\Scripts\Utility.ThreadManager.cs
+Remove symbols ['DEBUG'] from C:\Users\Zach\AppData\Roaming\SpaceEngineers\Mods\SEModHelpers\Scripts\Utility.ThreadManager.cs
+Copy from c:\Sites\zrisher\SEModHelpers\Utility\Scripts\TimeAction.cs
+       to C:\Users\Zach\AppData\Roaming\SpaceEngineers\Mods\SEModHelpers\Scripts\Utility.TimeAction.cs
+Remove symbols ['DEBUG'] from C:\Users\Zach\AppData\Roaming\SpaceEngineers\Mods\SEModHelpers\Scripts\Utility.TimeAction.cs
+Copy from c:\Sites\zrisher\SEModHelpers\Utility\Scripts\AttachedGrid\StatorRotor.cs
+       to C:\Users\Zach\AppData\Roaming\SpaceEngineers\Mods\SEModHelpers\Scripts\Utility.AttachedGrid.StatorRotor.cs
+Remove symbols ['DEBUG'] from C:\Users\Zach\AppData\Roaming\SpaceEngineers\Mods\SEModHelpers\Scripts\Utility.AttachedGrid.StatorRotor.cs
+Copy from c:\Sites\zrisher\SEModHelpers\Utility\Scripts\Extensions\CapsuleExtensions.cs
+       to C:\Users\Zach\AppData\Roaming\SpaceEngineers\Mods\SEModHelpers\Scripts\Utility.Extensions.CapsuleExtensions.cs
+Remove symbols ['DEBUG'] from C:\Users\Zach\AppData\Roaming\SpaceEngineers\Mods\SEModHelpers\Scripts\Utility.Extensions.CapsuleExtensions.cs
+Copy from c:\Sites\zrisher\SEModHelpers\Utility\Scripts\Extensions\IMyCubeBlockExtensions.cs
+       to C:\Users\Zach\AppData\Roaming\SpaceEngineers\Mods\SEModHelpers\Scripts\Utility.Extensions.IMyCubeBlockExtensions.cs
+Remove symbols ['DEBUG'] from C:\Users\Zach\AppData\Roaming\SpaceEngineers\Mods\SEModHelpers\Scripts\Utility.Extensions.IMyCubeBlockExtensions.cs
+Copy from c:\Sites\zrisher\SEModHelpers\Utility\Scripts\Extensions\IMySlimBlockExtensions.cs
+       to C:\Users\Zach\AppData\Roaming\SpaceEngineers\Mods\SEModHelpers\Scripts\Utility.Extensions.IMySlimBlockExtensions.cs
+Remove symbols ['DEBUG'] from C:\Users\Zach\AppData\Roaming\SpaceEngineers\Mods\SEModHelpers\Scripts\Utility.Extensions.IMySlimBlockExtensions.cs
+Copy from c:\Sites\zrisher\SEModHelpers\Utility\Scripts\Extensions\MiscExtensions.cs
+       to C:\Users\Zach\AppData\Roaming\SpaceEngineers\Mods\SEModHelpers\Scripts\Utility.Extensions.MiscExtensions.cs
+Remove symbols ['DEBUG'] from C:\Users\Zach\AppData\Roaming\SpaceEngineers\Mods\SEModHelpers\Scripts\Utility.Extensions.MiscExtensions.cs
+Copy from c:\Sites\zrisher\SEModHelpers\Utility\Scripts\Extensions\StringExtensions.cs
+       to C:\Users\Zach\AppData\Roaming\SpaceEngineers\Mods\SEModHelpers\Scripts\Utility.Extensions.StringExtensions.cs
+Remove symbols ['DEBUG'] from C:\Users\Zach\AppData\Roaming\SpaceEngineers\Mods\SEModHelpers\Scripts\Utility.Extensions.StringExtensions.cs
+Copy from c:\Sites\zrisher\SEModHelpers\Utility\Scripts\Extensions\VectorExtensions.cs
+       to C:\Users\Zach\AppData\Roaming\SpaceEngineers\Mods\SEModHelpers\Scripts\Utility.Extensions.VectorExtensions.cs
+Remove symbols ['DEBUG'] from C:\Users\Zach\AppData\Roaming\SpaceEngineers\Mods\SEModHelpers\Scripts\Utility.Extensions.VectorExtensions.cs
+Copy from c:\Sites\zrisher\SEModHelpers\Utility\Scripts\AttachedGrids.cs
+       to C:\Users\Zach\AppData\Roaming\SpaceEngineers\Mods\SEModHelpers Dev\Scripts\Utility.AttachedGrids.cs
+Copy from c:\Sites\zrisher\SEModHelpers\Utility\Scripts\CubeGridCache.cs
+       to C:\Users\Zach\AppData\Roaming\SpaceEngineers\Mods\SEModHelpers Dev\Scripts\Utility.CubeGridCache.cs
+Copy from c:\Sites\zrisher\SEModHelpers\Utility\Scripts\DefinitionCache.cs
+       to C:\Users\Zach\AppData\Roaming\SpaceEngineers\Mods\SEModHelpers Dev\Scripts\Utility.DefinitionCache.cs
+Copy from c:\Sites\zrisher\SEModHelpers\Utility\Scripts\FastResourceLock.cs
+       to C:\Users\Zach\AppData\Roaming\SpaceEngineers\Mods\SEModHelpers Dev\Scripts\Utility.FastResourceLock.cs
+Copy from c:\Sites\zrisher\SEModHelpers\Utility\Scripts\Lazy.cs
+       to C:\Users\Zach\AppData\Roaming\SpaceEngineers\Mods\SEModHelpers Dev\Scripts\Utility.Lazy.cs
+Copy from c:\Sites\zrisher\SEModHelpers\Utility\Scripts\ListSnapshots.cs
+       to C:\Users\Zach\AppData\Roaming\SpaceEngineers\Mods\SEModHelpers Dev\Scripts\Utility.ListSnapshots.cs
+Copy from c:\Sites\zrisher\SEModHelpers\Utility\Scripts\Logger.cs
+       to C:\Users\Zach\AppData\Roaming\SpaceEngineers\Mods\SEModHelpers Dev\Scripts\Utility.Logger.cs
+Copy from c:\Sites\zrisher\SEModHelpers\Utility\Scripts\MainLock.cs
+       to C:\Users\Zach\AppData\Roaming\SpaceEngineers\Mods\SEModHelpers Dev\Scripts\Utility.MainLock.cs
+Copy from c:\Sites\zrisher\SEModHelpers\Utility\Scripts\MotorTurret.cs
+       to C:\Users\Zach\AppData\Roaming\SpaceEngineers\Mods\SEModHelpers Dev\Scripts\Utility.MotorTurret.cs
+Copy from c:\Sites\zrisher\SEModHelpers\Utility\Scripts\PrettySI.cs
+       to C:\Users\Zach\AppData\Roaming\SpaceEngineers\Mods\SEModHelpers Dev\Scripts\Utility.PrettySI.cs
+Copy from c:\Sites\zrisher\SEModHelpers\Utility\Scripts\ReadOnlyList.cs
+       to C:\Users\Zach\AppData\Roaming\SpaceEngineers\Mods\SEModHelpers Dev\Scripts\Utility.ReadOnlyList.cs
+Copy from c:\Sites\zrisher\SEModHelpers\Utility\Scripts\RelativeDirection3F.cs
+       to C:\Users\Zach\AppData\Roaming\SpaceEngineers\Mods\SEModHelpers Dev\Scripts\Utility.RelativeDirection3F.cs
+Copy from c:\Sites\zrisher\SEModHelpers\Utility\Scripts\RelativePosition3F.cs
+       to C:\Users\Zach\AppData\Roaming\SpaceEngineers\Mods\SEModHelpers Dev\Scripts\Utility.RelativePosition3F.cs
+Copy from c:\Sites\zrisher\SEModHelpers\Utility\Scripts\RelativeVector3F.cs
+       to C:\Users\Zach\AppData\Roaming\SpaceEngineers\Mods\SEModHelpers Dev\Scripts\Utility.RelativeVector3F.cs
+Copy from c:\Sites\zrisher\SEModHelpers\Utility\Scripts\Settings.cs
+       to C:\Users\Zach\AppData\Roaming\SpaceEngineers\Mods\SEModHelpers Dev\Scripts\Utility.Settings.cs
+Copy from c:\Sites\zrisher\SEModHelpers\Utility\Scripts\TargetTracker.cs
+       to C:\Users\Zach\AppData\Roaming\SpaceEngineers\Mods\SEModHelpers Dev\Scripts\Utility.TargetTracker.cs
+Copy from c:\Sites\zrisher\SEModHelpers\Utility\Scripts\ThreadManager.cs
+       to C:\Users\Zach\AppData\Roaming\SpaceEngineers\Mods\SEModHelpers Dev\Scripts\Utility.ThreadManager.cs
+Copy from c:\Sites\zrisher\SEModHelpers\Utility\Scripts\TimeAction.cs
+       to C:\Users\Zach\AppData\Roaming\SpaceEngineers\Mods\SEModHelpers Dev\Scripts\Utility.TimeAction.cs
+Copy from c:\Sites\zrisher\SEModHelpers\Utility\Scripts\AttachedGrid\StatorRotor.cs
+       to C:\Users\Zach\AppData\Roaming\SpaceEngineers\Mods\SEModHelpers Dev\Scripts\Utility.AttachedGrid.StatorRotor.cs
+Copy from c:\Sites\zrisher\SEModHelpers\Utility\Scripts\Extensions\CapsuleExtensions.cs
+       to C:\Users\Zach\AppData\Roaming\SpaceEngineers\Mods\SEModHelpers Dev\Scripts\Utility.Extensions.CapsuleExtensions.cs
+Copy from c:\Sites\zrisher\SEModHelpers\Utility\Scripts\Extensions\IMyCubeBlockExtensions.cs
+       to C:\Users\Zach\AppData\Roaming\SpaceEngineers\Mods\SEModHelpers Dev\Scripts\Utility.Extensions.IMyCubeBlockExtensions.cs
+Copy from c:\Sites\zrisher\SEModHelpers\Utility\Scripts\Extensions\IMySlimBlockExtensions.cs
+       to C:\Users\Zach\AppData\Roaming\SpaceEngineers\Mods\SEModHelpers Dev\Scripts\Utility.Extensions.IMySlimBlockExtensions.cs
+Copy from c:\Sites\zrisher\SEModHelpers\Utility\Scripts\Extensions\MiscExtensions.cs
+       to C:\Users\Zach\AppData\Roaming\SpaceEngineers\Mods\SEModHelpers Dev\Scripts\Utility.Extensions.MiscExtensions.cs
+Copy from c:\Sites\zrisher\SEModHelpers\Utility\Scripts\Extensions\StringExtensions.cs
+       to C:\Users\Zach\AppData\Roaming\SpaceEngineers\Mods\SEModHelpers Dev\Scripts\Utility.Extensions.StringExtensions.cs
+Copy from c:\Sites\zrisher\SEModHelpers\Utility\Scripts\Extensions\VectorExtensions.cs
+       to C:\Users\Zach\AppData\Roaming\SpaceEngineers\Mods\SEModHelpers Dev\Scripts\Utility.Extensions.VectorExtensions.cs
+Copy from c:\Sites\zrisher\SEModHelpers\TurretControl\Scripts\TurretThread.cs
+       to C:\Users\Zach\AppData\Roaming\SpaceEngineers\Mods\SEModHelpers\Scripts\TurretControl.TurretThread.cs
+Remove symbols ['DEBUG'] from C:\Users\Zach\AppData\Roaming\SpaceEngineers\Mods\SEModHelpers\Scripts\TurretControl.TurretThread.cs
+Copy from c:\Sites\zrisher\SEModHelpers\TurretControl\Scripts\TurretThread.cs
+       to C:\Users\Zach\AppData\Roaming\SpaceEngineers\Mods\SEModHelpers Dev\Scripts\TurretControl.TurretThread.cs
+
+ --- Copying Textures --- 
+creating directory path: C:\Users\Zach\AppData\Roaming\SpaceEngineers\Mods\SEModHelpers\Textures\.
+creating directory path: C:\Users\Zach\AppData\Roaming\SpaceEngineers\Mods\SEModHelpers\Textures\Cubes
+Copy from c:\Sites\zrisher\SEModHelpers\Utility\Textures\Cubes\Purple_me.dds
+       to C:\Users\Zach\AppData\Roaming\SpaceEngineers\Mods\SEModHelpers\Textures\Cubes\Utility.Purple_me.dds
+Remove symbols ['DEBUG'] from C:\Users\Zach\AppData\Roaming\SpaceEngineers\Mods\SEModHelpers\Textures\Cubes\Utility.Purple_me.dds
+creating directory path: C:\Users\Zach\AppData\Roaming\SpaceEngineers\Mods\SEModHelpers\Textures\Icon
+Copy from c:\Sites\zrisher\SEModHelpers\Utility\Textures\Icon\radar.dds
+       to C:\Users\Zach\AppData\Roaming\SpaceEngineers\Mods\SEModHelpers\Textures\Icon\Utility.radar.dds
+Remove symbols ['DEBUG'] from C:\Users\Zach\AppData\Roaming\SpaceEngineers\Mods\SEModHelpers\Textures\Icon\Utility.radar.dds
+creating directory path: C:\Users\Zach\AppData\Roaming\SpaceEngineers\Mods\SEModHelpers\Textures\TextPanel
+Copy from c:\Sites\zrisher\SEModHelpers\Utility\Textures\TextPanel\radar.dds
+       to C:\Users\Zach\AppData\Roaming\SpaceEngineers\Mods\SEModHelpers\Textures\TextPanel\Utility.radar.dds
+Remove symbols ['DEBUG'] from C:\Users\Zach\AppData\Roaming\SpaceEngineers\Mods\SEModHelpers\Textures\TextPanel\Utility.radar.dds
+creating directory path: C:\Users\Zach\AppData\Roaming\SpaceEngineers\Mods\SEModHelpers Dev\Textures\.
+creating directory path: C:\Users\Zach\AppData\Roaming\SpaceEngineers\Mods\SEModHelpers Dev\Textures\Cubes
+Copy from c:\Sites\zrisher\SEModHelpers\Utility\Textures\Cubes\Purple_me.dds
+       to C:\Users\Zach\AppData\Roaming\SpaceEngineers\Mods\SEModHelpers Dev\Textures\Cubes\Utility.Purple_me.dds
+creating directory path: C:\Users\Zach\AppData\Roaming\SpaceEngineers\Mods\SEModHelpers Dev\Textures\Icon
+Copy from c:\Sites\zrisher\SEModHelpers\Utility\Textures\Icon\radar.dds
+       to C:\Users\Zach\AppData\Roaming\SpaceEngineers\Mods\SEModHelpers Dev\Textures\Icon\Utility.radar.dds
+creating directory path: C:\Users\Zach\AppData\Roaming\SpaceEngineers\Mods\SEModHelpers Dev\Textures\TextPanel
+Copy from c:\Sites\zrisher\SEModHelpers\Utility\Textures\TextPanel\radar.dds
+       to C:\Users\Zach\AppData\Roaming\SpaceEngineers\Mods\SEModHelpers Dev\Textures\TextPanel\Utility.radar.dds
+Copy from c:\Sites\zrisher\SEModHelpers\Archive\Textures\Cubes\Purple_me.dds
+       to C:\Users\Zach\AppData\Roaming\SpaceEngineers\Mods\SEModHelpers\Textures\Cubes\Archive.Purple_me.dds
+Remove symbols ['DEBUG'] from C:\Users\Zach\AppData\Roaming\SpaceEngineers\Mods\SEModHelpers\Textures\Cubes\Archive.Purple_me.dds
+Copy from c:\Sites\zrisher\SEModHelpers\Archive\Textures\Icon\radar.dds
+       to C:\Users\Zach\AppData\Roaming\SpaceEngineers\Mods\SEModHelpers\Textures\Icon\Archive.radar.dds
+Remove symbols ['DEBUG'] from C:\Users\Zach\AppData\Roaming\SpaceEngineers\Mods\SEModHelpers\Textures\Icon\Archive.radar.dds
+Copy from c:\Sites\zrisher\SEModHelpers\Archive\Textures\TextPanel\radar.dds
+       to C:\Users\Zach\AppData\Roaming\SpaceEngineers\Mods\SEModHelpers\Textures\TextPanel\Archive.radar.dds
+Remove symbols ['DEBUG'] from C:\Users\Zach\AppData\Roaming\SpaceEngineers\Mods\SEModHelpers\Textures\TextPanel\Archive.radar.dds
+Copy from c:\Sites\zrisher\SEModHelpers\Archive\Textures\Cubes\Purple_me.dds
+       to C:\Users\Zach\AppData\Roaming\SpaceEngineers\Mods\SEModHelpers Dev\Textures\Cubes\Archive.Purple_me.dds
+Copy from c:\Sites\zrisher\SEModHelpers\Archive\Textures\Icon\radar.dds
+       to C:\Users\Zach\AppData\Roaming\SpaceEngineers\Mods\SEModHelpers Dev\Textures\Icon\Archive.radar.dds
+Copy from c:\Sites\zrisher\SEModHelpers\Archive\Textures\TextPanel\radar.dds
+       to C:\Users\Zach\AppData\Roaming\SpaceEngineers\Mods\SEModHelpers Dev\Textures\TextPanel\Archive.radar.dds
+
 
 ------- SEModHelpers Python Build Complete  ------- 
 

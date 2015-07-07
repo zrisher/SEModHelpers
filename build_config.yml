@@ -40,19 +40,26 @@ has_modules: true
 #se_mods_dir: 'C:\Users\UserName\AppData\Roaming\SpaceEngineers\Mods'
 
 # C# compilation variables to remove in production code
-dev_compilation_variables:
-   - DEBUG
+#dev_compilation_variables:
+#   - DEBUG
 
 # Should the builder deploy an additional copy of the mod with compilation tags
 # left intact for development?
-build_dev_version: true
+#build_dev_version: true
 
+# Specify the various distributions you'd like to create in the SE Mods folder
+# Distributes besides `production` require a suffix to append to the mod name
+# when building their path. If one isn't provided its key will be used.
+# Distributions may optionally specify a list of Compilation Symbols to remove
+# from their '.cs' files.
 distributions:
-  - development
+   development:
       suffix: " Dev"
-  - production
-      remove_compile_symbols:
+   production:
+      compile_symbols_to_remove:
         - DEBUG
+
+
 
 # if mwm_builder_path points to MwmBuilder.exe, models will be built
 mwm_builder_path: 'C:\Program Files (x86)\Steam\SteamApps\common\SpaceEngineers\Tools\MwmBuilder\MwmBuilder.exe'

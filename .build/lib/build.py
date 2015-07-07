@@ -17,22 +17,20 @@ import datetime, errno, os, os.path, re, shutil, stat, subprocess, sys, time
 from . import ops
 from . import paths
 
-cleanup_ignore_rgx = re.compile("^modinfo\.sbmi")
+
+def clean_distributions(distributions):
+    for dist_key, dist in distributions.items():
+        clean_dist_dir(dist['path'], dist['cleanup_ignores'])
 
 
-def clean_dist_dirs(dist_dirs):
-    for dist_dir in dist_dirs:
-        clean_dist_dir(dist_dir)
-
-
-def clean_dist_dir(dist_dir):
+def clean_dist_dir(dist_dir, cleanup_ignores):
     """
     Erase everything in the distribution dir besides modinfo.sbmi
     """
     print("cleaning dist dir " + dist_dir)
     for root, dirs, files in os.walk(dist_dir):
         for file in files:
-            if not re.match(cleanup_ignore_rgx, file):
+            if not any([re.match(ignore, file) for ignore in cleanup_ignores]):
                 full_path = os.path.join(root, file)
                 print("removing file " + full_path)
                 os.remove(full_path)
@@ -40,30 +38,35 @@ def clean_dist_dir(dist_dir):
     ops.recursive_delete_if_empty(dist_dir)
 
 
-def distribute(source_modules, dist_dirs, content_paths, extension,
-               comp_vars_to_remove=[], squash_dirs=False):
+def distribute(source_modules, distributions, content_paths, extension,
+               squash_dirs=False, squash_modules=True):
     """
     Move files with extension `extension` from `content_paths` in `source_modules`
     to `dist_dir`
     """
-    print("Distribute")
-
     for module_name, module_path in source_modules.items():
-        print("Distribute '{0}' in {1}/{2} to {3}".format(
-            extension, module_name, content_paths, dist_dirs))
-        """
         for content_path in content_paths:
             module_content_path = os.path.join(module_path, *content_path)
-            for dist_dir in dist_dirs:
-                dist_content_path = os.path.join(dist_dir, *content_path)
+            #print("Distribute *.{0} from {1}:".format(
+            #    extension, module_content_path))
+
+            for dist_key, dist in distributions.items():
+
+                if squash_modules:
+                    dist_content_path = os.path.join(dist['path'], *content_path)
+                    file_prefix = module_name + "."
+                else:
+                    dist_content_path = os.path.join(
+                        dist['path'], os.path.join(*content_path), dist['dir_name'])
+                    file_prefix = ""
 
                 ops.deep_copy_files_with_extension(
                     module_content_path, dist_content_path, extension,
-                    module_name + ".",
-                    comp_vars_to_remove,
-                    squash_dirs
+                    filename_prefix=file_prefix,
+                    comp_sym_to_remove=dist['compile_symbols_to_remove'],
+                    squash_dirs=squash_dirs
                 )
-        """
+
 
 
 def distribute_models(source_modules, dist_dirs):
@@ -138,96 +141,6 @@ def distribute_scripts(source_modules, dist_dir):
             module_content_path, dist_content_path, ".cs", module_name + "."
         )
 
-    """
-    createDir(distScript)
-    createDir(distScriptDev)
-    # copy scripts, data
-    for module in modules[:]:
-      copyFiles(module)
-
-
-        # Move Scripts
-    build.distribute_scripts(source_module_paths, dest_dir)
-    build.distribute_scripts(source_module_paths, dest_dir_dev)
-
-
-      # create Scripts
-    createDir(destScript)
-    createDir(destScriptDev)
-    # copy scripts, data
-    for module in modules[:]:
-
-    # method that takes a module name and moves the files
-    def copyFiles(l_source):
-      print ("copying from "+l_source)
-      l_sourceDir = startDir + "\\" + l_source + "\Scripts"
-      l_dataDir = startDir + "\\" + l_source + "\Data"
-      l_archiveDir = startDir + "\Archive\\" + l_source
-
-      createDir(l_archiveDir)
-      ignoreDirs = [ "bin", "obj", "Properties" ] # these are case-sensitive
-
-      for path, dirs, files in os.walk(l_sourceDir):
-        for ignore in ignoreDirs:
-          if (ignore in dirs):
-            dirs.remove(ignore)
-
-        os.chdir(path)
-
-        nsPath = path.replace(l_sourceDir,'')
-        nsStr = nsPath.replace("\\","") + '.' if nsPath != '' else ''
-
-
-        for file in files:
-          if not file.lower().endswith(".cs"):
-            continue
-
-          #print ("file is "+file)
-          lines = open(file, 'r').readlines()
-
-          if (len(lines) == 0 or  "skip file on build" in lines[0]):
-            #print ("skipping "+file)
-            continue
-
-          l_destFileName =  l_source + '.' + nsStr + file
-          l_destFile = destScript + "\\" + l_destFileName
-          l_destFileDev = destScriptDev + "\\" + l_destFileName
-
-          # fake the pre-processor
-          # remove symbols so scripts will compile
-          # remove Conditional in Dev version
-          # compiler will still remove Conditional statements in released version
-          destFile = open(l_destFile, 'w')
-          destFileDev = open(l_destFileDev, 'w')
-          for line in lines:
-            if (not line.lstrip().startswith("//")):
-              if ("#define LOG_ENABLED" in line): # could not make startswith work
-                destFile.write("// pre-processor symbol removed by build.py\n")
-                destFileDev.write("// pre-processor symbol removed by build.py\n")
-                continue
-              if ("System.Diagnostics.Conditional" in line):
-                destFile.write(line)
-                destFileDev.write("// Conditional removed by build.py\n")
-                continue
-            destFile.write(line)
-            destFileDev.write(line)
-
-
-          # for archive, add date and time to file name
-          d = datetime.datetime.fromtimestamp(os.path.getmtime(file))
-          formated = str(d.year)+"-"+str(d.month).zfill(2)+"-"+str(d.day).zfill(2)+"_"+str(d.hour).zfill(2)+"-"+str(d.minute).zfill(2)+"_"+file
-          archive = l_archiveDir +"\\"+formated
-          try:
-            os.chmod(archive, stat.S_IWRITE)
-          except OSError:
-            pass
-          shutil.copyfile(file, archive)
-          os.chmod(archive, stat.S_IREAD)
-
-      if os.path.exists(l_dataDir):
-        copyWithExtension(l_dataDir, destDataDev, ".sbc")
-        copyWithExtension(l_dataDir, destData, ".sbc")
-    """
 
 
 def distribute_textures(source_module_paths, dist_dir):

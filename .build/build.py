@@ -15,16 +15,10 @@ import os
 import os.path
 import sys
 
-from enum import Enum
-import yaml
+
 
 import lib
 
-class Animals(Enum):
-    ant = 1
-    bee = 2
-    cat = 3
-    dog = 4
 
 
 def build_distro():
@@ -47,74 +41,37 @@ def build_distro():
 
     # === Load config
 
-    config = yaml.load(open(build_config_path, 'r'))
-
-
-    # source
-    source_dir = config.get('source_dir')
-    source_dir = source_dir if source_dir else os.path.dirname(build_config_path)
-
-    mod_name = config.get('mod_name')
-    mod_name = mod_name if mod_name else os.path.basename(source_dir)
-
-    has_modules = not not config.get('has_modules')
-    if has_modules:
-        source_modules = lib.paths.modules(source_dir)
-    else:
-        source_modules = {}
-        source_modules[mod_name] = source_dir
-
-    # destination
-    se_mods_dir = config.get('se_mods_dir')
-    if not se_mods_dir:
-        appData = os.getenv('APPDATA')
-        se_mods_dir = os.path.join(appData, "SpaceEngineers", "Mods")
-
-    dist_path = os.path.join(se_mods_dir, mod_name)
-
-    if build_dev_version:
-
-
-
-    build_dev_version = not not config.get('build_dev_version')
-    dist_dirs = {}
-    dist_dirs[mod_name] = os.path.join(se_mods_dir, mod_name)
-    if build_dev_version:
-        dist_dirs[mod_name] = os.path.join(se_mods_dir, mod_name + " Dev")
-
-
-
-
-    dev_comp_vars = config.get('dev_compilation_variables')
-    if not dev_comp_vars:
-        dev_comp_vars = []
-
-    # tools
-    mwm_builder_path = "{0}".format(config.get('mwm_builder_path'))
-
     print("\n----- Config -----\n")
-    print("Mod Name: " + mod_name)
-    print("Source directory: " + source_dir)
-    #print("Multiple Source Modules: {0}".format(has_modules))
-    #print("")
+
+    config = lib.config.load(build_config_path)
+    if not config:
+        return
+
+    source_modules = config['source_modules']
+    distributions = config['distributions']
+    mwm_builder_path = config['mwm_builder_path']
+
     print("Source Modules: ")
     for module_name, module_path in source_modules.items():
         print(" - " + module_name + ": " + module_path)
     print("")
-    print("SE Mods Directory: " + se_mods_dir)
-    print("Distribute Mods to: ")
-    print(" - " + dist_path)
-    print("Build the Dev version? {0}".format(build_dev_version))
-    if build_dev_version:
-        print("Mod Dev Dist Dir " + dist_path_dev)
-    print("Compilation variables to remove from .cs files: {0}".format(dev_comp_vars))
+
+    print("Distributions")
+    for dist_key, dist_config in distributions.items():
+        print(" - " + dist_key + ": ")
+        #for k,v in dist_config.items():
+        #    print("     {0}: {1}".format(k, v))
+        print("     {0}: {1}".format('Path', dist_config['path']))
+        print("     {0}: {1}".format('cleanup_ignores', dist_config['cleanup_ignores']))
+        print("     {0}: {1}".format('compile_symbols_to_remove', dist_config['compile_symbols_to_remove']))
     print("")
+
     print("MWM Builder Path: " + mwm_builder_path)
     print("")
 
     # === Run Build
-    print("----- Running Build ----- \n")
 
+    print("----- Running Build ----- \n")
 
     # Start MWM Builder, which runs in parallel
     print("--- Starting MWM Model Builder Threads --- ")
@@ -128,36 +85,34 @@ def build_distro():
         print("no mwm_processes running")
     print("")
 
-    if build_dev_version:
-        dist_paths = [dist_path, dist_path_dev]
-    else:
-        dist_paths = [dist_path]
-
     # Clean Destinations
     print("--- Cleaning Dist Dirs ---")
-    lib.build.clean_dist_dirs(dist_paths)
+    lib.build.clean_distributions(distributions)
     print("")
 
     # Copy Data
     print("--- Copying Data ---")
-    lib.build.distribute(source_modules, dist_paths, [["Data"]], ".sbc")
+    lib.build.distribute(source_modules, distributions, [["Data"]], "sbc")
     print("")
 
-    """
+
     # Copy Scripts
     print("--- Copying Scripts ---")
-    lib.build.distribute(source_modules, dist_paths,
-                         [["Scripts"],["Data", "Scripts"]],
-                         ".cs", remove_comp_vars=True
-    )
+    #lib.build.distribute(source_modules, distributions,
+    #                     [["Scripts"],["Data", "Scripts"]], "cs",
+    #                     squash_modules=False)
+    lib.build.distribute(source_modules, distributions,
+                     [["Scripts"],["Data", "Scripts"]], "cs",
+                     squash_modules=True, squash_dirs=True)
     print("")
 
 
     # Copy Textures
     print(" --- Copying Textures --- ")
-    lib.build.distribute_textures_to_dirs(source_module_paths, [dist_path, dist_path_dev])
+    lib.build.distribute(source_modules, distributions, [["Textures"]], "dds")
     print("\n")
 
+    """
     # Copy Models once they're built
     if mwm_processes_count > 0:
         print("waiting for our mwm processes to finish")
