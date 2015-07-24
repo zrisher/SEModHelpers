@@ -3,19 +3,23 @@ import os.path
 import re
 import shutil
 import fileinput
+import codecs
 
 special_chars = re.compile("[^a-zA-Z0-9_\-]")
-conditional_line = re.compile("\[System.Diagnostics.Conditional\(\"(.*?)\"\)\]")
+conditional_line = re.compile("\s*\[System.Diagnostics.Conditional\(\"(.*?)\"\)\]")
+
 
 def create_dir(dir_path):
     if not os.path.exists(dir_path):
-        print ("creating directory path: " + dir_path)
+        print("creating directory path: " + dir_path)
         os.makedirs(dir_path)
 
-def eraseDir(l_dir):
-    if os.path.exists(l_dir):
-      #print ("deleting: "+l_dir)
-      shutil.rmtree(l_dir)
+
+def erase_dir(dir_path):
+    if os.path.exists(dir_path):
+        print("Removing directory path: " + dir_path)
+        shutil.rmtree(dir_path)
+
 
 def copy_files_with_extension(source, destination, extension,
                               filename_prefix="", comp_sym_to_remove=[]):
@@ -26,13 +30,18 @@ def copy_files_with_extension(source, destination, extension,
     if not os.path.exists(source):
         return
 
-    create_dir(destination)
+    # wait to create dir until we have a file so we don't create empty dirs
+    dist_dir_ensured = False
 
     lowercase_extension = extension.lower()
     for filename in os.listdir(source):
         if filename.lower().endswith(lowercase_extension):
             source_file_path = os.path.join(source, filename)
             if os.path.isfile(source_file_path):
+                if not dist_dir_ensured:
+                    create_dir(destination)
+                    dist_dir_ensured = True
+
                 dist_file_path = os.path.join(
                     destination, filename_prefix + filename
                 )
@@ -60,14 +69,8 @@ def deep_copy_files_with_extension(source, destination, extension,
 
     The provided filename prefix is added before the directory prefix.
     """
-    #print("    deep_copy *.{0} from {1} => {2}".format(extension, source, destination))
 
     for dir_path, sub_dirs, files in os.walk(source):
-        #source_path = os.path.join(source, dir_path)
-        #print("!!{0} = os.path.join({1}, {2})".format(source_path, source, dir_path))
-        #print("!!!Source {0}\n!!!Destin {1}".format(source_path, destination))
-
-
         rel_dir_path = os.path.relpath(dir_path, source)
         if squash_dirs:
             dist_path = destination
@@ -81,13 +84,6 @@ def deep_copy_files_with_extension(source, destination, extension,
         else:
             dist_path = os.path.join(destination, rel_dir_path)
             current_file_prefix = filename_prefix
-            #print("!!!{0} = os.path.join({1}, {2})".format(dist_path, destination, rel_dir_path))
-
-        #print("!!!Source {0}\n!!!Destin {1}".format(dir_path, dist_path))
-
-        #print("      deep dir {0}, file prefix '{1}'".format(
-        #    dir_path, current_file_prefix
-        #))
 
         copy_files_with_extension(
             dir_path, dist_path, extension, current_file_prefix,
@@ -132,28 +128,67 @@ def preprocess_cs_file(file_path, comp_sym_to_remove):
 
     # find valid compilation symbols
 
-    file = open(file_path, 'r')
+    #print("Preproccess CS file {0}".format(file_path))
+
+    encoding = get_encoding(file_path)
     valid_syms = []
 
-    for line in file:
-        if not line.startswith('#'):
-            break
-        if line.startswith('#DEFINE'):
-            comp_sym = line[7:].trim
-            if not comp_sym in comp_sym_to_remove:
-                valid_syms += comp_sym
+    with open(file_path, 'r', encoding=encoding) as file:
+        for line in file:
+            if not line.startswith('#'):
+                break
+            if line.startswith('#define'):
+                words = line.split()
+                if words.__len__() > 1:
+                    comp_sym = words[1]
+                    if comp_sym and not \
+                        (comp_sym_to_remove and comp_sym in comp_sym_to_remove):
+                            valid_syms.append(comp_sym)
 
     # remove conditional lines for valid symbols
 
-    for line in fileinput.input(file_path, inplace=True):
-        conditional_on = re.match(conditional_line, line).group(1)
+    print("Preproccess CS file - valid_syms: {0}".format(valid_syms))
 
-        if conditional_on in valid_syms:
-            continue
-        else:
+    # note that printing within a fileinput loop actually writes to the file
+    with fileinput.input(file_path, inplace=True) as file:
+        for line in file:
+            # remove comp definitions at top, they'll crash SE compilation
+            # note we can't just check line.startswith('#define') due to encoding
+            words = line.split()
+            if words.__len__() > 0 and '#define' in words[0]:
+                print("// Compilation Symbol Def removed by SEModHelper")
+                continue
+
+            # remove conditional lines for valid syms
+            conditional_attr_line = re.match(conditional_line, line)
+            if conditional_attr_line:
+                conditional_on = conditional_attr_line.group(1)
+                if conditional_on in valid_syms:
+                    print("// Valid Symbol Conditional removed by SEModHelper")
+                    continue
+
+            # TODO check for #if #else #end conditions too
+
             print(line, end="")
 
 
+
+
+
+def get_encoding(file_path):
+    """
+    Courtesy of http://stackoverflow.com/questions/13590749/reading-unicode-file-data-with-bom-chars-in-python
+    """
+    bytes = min(32, os.path.getsize(file_path))
+    raw = open(file_path, 'rb').read(bytes)
+
+    if raw.startswith(codecs.BOM_UTF8):
+        encoding = 'utf-8-sig'
+    else:
+        result = codecs.chardet.detect(raw)
+        encoding = result['encoding']
+
+    return encoding
 
 
 """

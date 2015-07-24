@@ -19,6 +19,7 @@ import sys
 
 import lib
 
+import re
 
 
 def build_distro():
@@ -95,24 +96,20 @@ def build_distro():
     lib.build.distribute(source_modules, distributions, [["Data"]], "sbc")
     print("")
 
-
     # Copy Scripts
     print("--- Copying Scripts ---")
-    #lib.build.distribute(source_modules, distributions,
-    #                     [["Scripts"],["Data", "Scripts"]], "cs",
-    #                     squash_modules=False)
     lib.build.distribute(source_modules, distributions,
                      [["Scripts"],["Data", "Scripts"]], "cs",
-                     squash_modules=True, squash_dirs=True)
+                     dist_content_path = ["Data", "Scripts"],
+                     squash_modules=False)  # , squash_dirs=True)
     print("")
-
 
     # Copy Textures
     print(" --- Copying Textures --- ")
     lib.build.distribute(source_modules, distributions, [["Textures"]], "dds")
     print("\n")
 
-    """
+
     # Copy Models once they're built
     if mwm_processes_count > 0:
         print("waiting for our mwm processes to finish")
@@ -120,9 +117,9 @@ def build_distro():
             mwm_process.wait()
 
     print(" --- Distributing Models --- ")
-    lib.build.distribute_models(source_module_paths, [dist_path, dist_path_dev])
+    lib.build.distribute(source_modules, distributions, [["Model"]], "mwm")
     print("\n")
-    """
+
 
     print("------- SEModHelpers Python Build Complete  ------- \n")
 

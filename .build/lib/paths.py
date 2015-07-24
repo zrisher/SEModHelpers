@@ -19,7 +19,7 @@ def modules(source_dir):
     return modules
 
 
-def investigateBadPath(s_printName, s_path):
+def investigate_bad_path(s_printName, s_path):
     if s_path is os.devnull:
       print (s_printName + " set to null device")
     else:
