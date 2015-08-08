@@ -1,4 +1,5 @@
-﻿#define LOG_ENABLED //remove on build
+﻿/*
+#define LOG_ENABLED //remove on build
 
 using System;
 using System.Collections.Generic;
@@ -358,3 +359,4 @@ namespace Rynchodon
 		}
 	}
 }
+*/

@@ -1,4 +1,5 @@
-﻿using System;
+﻿/*
+using System;
 
 namespace Rynchodon
 {
@@ -49,3 +50,4 @@ namespace Rynchodon
 		}
 	}
 }
+*/

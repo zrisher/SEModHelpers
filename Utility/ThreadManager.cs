@@ -1,4 +1,5 @@
-﻿#define LOG_ENABLED //remove on build
+﻿/*
+#define LOG_ENABLED //remove on build
 
 using Sandbox.ModAPI;
 using System;
@@ -72,3 +73,4 @@ namespace Rynchodon
 		}
 	}
 }
+*/

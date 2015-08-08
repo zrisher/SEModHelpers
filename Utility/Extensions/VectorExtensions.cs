@@ -1,4 +1,5 @@
-﻿using System;
+﻿/*
+using System;
 using VRageMath;
 
 namespace Rynchodon
@@ -80,3 +81,4 @@ namespace Rynchodon
 		}
 	}
 }
+*/

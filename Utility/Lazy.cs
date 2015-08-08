@@ -1,4 +1,5 @@
-﻿using System;
+﻿/*
+using System;
 
 namespace Rynchodon
 {
@@ -32,3 +33,4 @@ namespace Rynchodon
 		{ get { return value__IsValueCreated; } }
 	}
 }
+*/

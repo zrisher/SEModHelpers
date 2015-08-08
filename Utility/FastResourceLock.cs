@@ -1,4 +1,5 @@
-﻿using System;
+﻿/*
+using System;
 using VRage;
 using VRage.Collections;
 
@@ -257,3 +258,4 @@ namespace Rynchodon
 		#endregion
 	}
 }
+*/
